@@ -1,0 +1,202 @@
+{% load crispy_forms_tags %} {% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Daily Stocks</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="header-nightsky">
+      <nav class="navbar navbar-dark navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="#">STOCK_DAILY</a>
+          <div class="navbar-header">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a href="#how" class="nav-link">HOW ITS WORK</a>
+              </li>
+              <li class="nav-item active">
+                <a href="#form2" class="nav-link">REGISTRATION FORM</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="hero">
+        <h1>Set.. Get.. Stock..</h1>
+        <p>Fill the below form to get Trading Calls daily in your email.</p>
+        <div class="d-flex flex-row justify-content-center">
+          <a href="#form" class="btn btn-primary"
+            >Click here to get Stock Alert</a
+          >
+          <a href="#form2" class="btn btn-primary"
+            >Click here to get Trading Calls</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <section class="how_it_work my-5" id="how">
+      <h1 class="text-center my-5">How Its Works</h1>
+      <div class="container mt-4">
+        <div class="d-flex flex-row justify-content-center">
+          <div class="">
+            <img
+              src="{% static 'images/form-conversion-design.jpg' %}"
+              class="rounded mx-auto d-block w-50"
+              alt="..."
+            />
+            <p class="small text-center">
+              Enter your email id <br />in below form
+            </p>
+          </div>
+          <div class="mt-2">
+            <img
+              src="{% static 'images/checkbox.jpg' %}"
+              class="rounded mx-auto mt-3 mb-2 d-block w-50"
+              alt="..."
+            />
+            <p class="small text-center">
+              Select the NSE stock<br />from below form
+            </p>
+          </div>
+          <div class="ml-1">
+            <img
+              src="{% static 'images/notification.jpg' %}"
+              class="rounded d-block mx-auto w-75"
+              alt="..."
+            />
+            <p class="small text-center mt-2">
+              You receive E-mail daily<br />Buying and Selling Calls and<br />
+              many more
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="form" class="mt-5">
+      <div class="container my-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+            <form method="POST" action="" class="my-5">
+              {% csrf_token %}
+
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="control-label" for="selectbasic"
+                      >Email*:-</label
+                    >
+                    {{ form.email }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-item-center">
+                <div class="col">
+                  <div class="checkbox">
+                    <label class="control-label">NSE Stocks lists*:-</label>
+                    <div class="row ml-4 mt-1 mb-3">
+                      <input
+                        onkeyup="search()"
+                        id="ser"
+                        type="text"
+                        class="form-control col-6 col-sm-5 col-md-6"
+                        placeholder="search the stock"
+                      />
+                      <button
+                        type="button"
+                        id="sub"
+                        class="row btn btn-danger offset-1"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                    {% csrf_token %} {{ form.stocks }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex">
+                <div class="align-self-center mx-auto mt-5">
+                  <input type="submit" class="btn btn-primary" />
+                </div>
+              </div>
+            </form>
+          </div>
+          <small class="small text-center"
+            ><strong
+              ><u
+                >Disclaimer:- All the data are rendered from NSE API.WE do not
+                hold any responsiblity of the Stock Data.</u
+              ></strong
+            ></small
+          >
+        </div>
+      </div>
+    </section>
+    <section id="form2" class="mt-5">
+      <div class="container my-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+            <form method="POST" class="my-5">
+              {% csrf_token %} {{ tips_form|crispy }}
+              <div class="d-flex">
+                <div class="align-self-center mx-auto">
+                  <input type="submit" class="btn btn-primary" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </body>
+</html>

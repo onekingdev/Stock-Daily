@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <style>
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+
+
+    </style>
+
+<h1 style="text-decoration: underline; text-align: center; font-weight: bold; font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;"><strong>Here is your stock information</strong></h1>
+<table style="font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%;">
+    <thead>
+        <tr style="background-color: #f2f2f2;">
+        <th style="padding: 8px; border: 1px solid #ddd; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white;" scope="col"><strong>No</strong></th>
+        <th style="padding: 8px; border: 1px solid #ddd; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white;" scope="col"><strong>Comapny Name</strong></th>
+        <th style="padding: 8px; border: 1px solid #ddd; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white;" scope="col"><strong>Open Price</strong></th>
+        <th style="padding: 8px; border: 1px solid #ddd; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white;" scope="col"><strong>Last price</strong> </th>
+        <th style="padding: 8px; border: 1px solid #ddd; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white;" scope="col"><strong>High 52</strong></th>
+        <th style="padding: 8px; border: 1px solid #ddd; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white;" scope="col"><strong>Low 52</strong></th>
+        <th style="padding: 8px; border: 1px solid #ddd; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4CAF50; color: white;" scope="col"><strong>Average price</strong></th>
+    </tr>
+</thead>
+<tbody>
+    {% for com,open,last,hig,low,Avg in company_data %}
+        <tr style="background-color: #f2f2f2;">
+            <th style="padding: 8px; border: 1px solid #ddd;" scope="row"> {{ loop.index }}
+            <td style="padding: 8px; border: 1px solid #ddd;">{{ com }}</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">{{ open }}</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">{{ last }}</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">{{ hig }}</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">{{ low }}</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">{{ Avg }}</td>
+            </tr>
+    {% endfor %}
+</tbody>
+</table>
+</html>
