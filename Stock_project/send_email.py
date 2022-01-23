@@ -58,7 +58,7 @@ with sqlite3.connect('db.sqlite3') as conn:
             text = msg.as_string()
 
             s.starttls()
-            s.login('smitgol007@gmail.com', 'smitsmit9725760272')
+            s.login('smitgol007@gmail.com', 'smitsmit9825397527')
             message = "Hii"
             s.sendmail("smitgol007@gmail.com", email_id, text)
             print("Done!!")
