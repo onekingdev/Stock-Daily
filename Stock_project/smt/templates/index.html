@@ -57,7 +57,7 @@
           <a href="#form" class="btn btn-primary"
             >Click here to get Stock Alert</a
           >
-          <a href="#form" class="btn btn-primary"
+          <a href="#form2" class="btn btn-primary"
             >Click here to get Trading Calls</a
           >
         </div>
@@ -168,8 +168,8 @@
       <div class="container my-4">
         <div class="row justify-content-center">
           <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-            <form method="POST" action="" class="my-5">
-              {{ tips_form|crispy }}
+            <form method="POST" class="my-5">
+              {% csrf_token %} {{ tips_form|crispy }}
               <div class="d-flex">
                 <div class="align-self-center mx-auto">
                   <input type="submit" class="btn btn-primary" />
